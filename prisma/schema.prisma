@@ -1,0 +1,28 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Funcionario {
+  id_funcionario Int      @id @default(autoincrement())
+  nome           String   @db.VarChar(100)
+  cpf            String   @db.Char(11)
+  cargo          Cargo
+  salario        Decimal  @db.Decimal(10, 2)
+  data_admissao  DateTime @db.Date
+  telefone       String?  @db.VarChar(20)
+  email          String?  @db.VarChar(100)
+  id_setor       Int
+}
+
+enum Cargo {
+  Vendedor
+  Caixa
+  Gerente
+  Estoquista
+  Outros
+}
