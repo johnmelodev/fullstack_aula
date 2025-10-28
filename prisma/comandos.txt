@@ -1,0 +1,23 @@
+O único trabalho dele é desenhar a planta do seu projeto Prisma. Ele faz isso UMA ÚNICA VEZ:
+Ele cria a pasta prisma/.
+Ele cria o arquivo schema.prisma (a "planta" em si).
+Ele conecta o seu arquivo .env ao schema.prisma
+
+----- Pense no 
+---npx prisma init como o "Arquiteto".
+
+
+
+
+Você deve rodar npx prisma generate SEMPRE QUE VOCÊ MUDAR O "MAPA
+Pense no schema.prisma como o "Mapa" do seu banco de dados. Pense no npx prisma generate como o "Fabricante de Ferramentas".
+O único trabalho do generate é ler o "Mapa" (schema.prisma) e fabricar as ferramentas (o código JavaScript) que você vai usar.
+Ele lê o seu model Funcionario {} e "fabrica" as funções prisma.funcionario.findMany(), prisma.funcionario.create(), etc., dentro da pasta node_modules/@prisma/client.
+REGRA: Você deve rodar npx prisma generate SEMPRE QUE VOCÊ MUDAR O "MAPA" (schema.prisma).
+
+----- O "Fabricante de Ferramentas"
+---npx prisma generate 
+
+DUVIDA: Esse aqui, é para criar o banco de dados usando o prisma? Tem como fazer isso?
+----- O "Fabricante de Ferramentas"
+---npx prisma generate 
