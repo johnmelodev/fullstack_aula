@@ -1,5 +1,4 @@
-// use é o que manda tudo para o servido express
-
+// use é o que manda tudo para o servidr express
 import express from "express"
 import cors from "cors"
 // ele le os arquivos presentes no meu .env, e cria um objeto global para distribuir por toda minha aplicacao
@@ -13,6 +12,7 @@ dotenv.config()
 const port = process.env.PORT
 
 // DUVIDA o conceito de instanciar, isso é uma funcao depois vira objeto nao entendi
+// DUVIDA fazer isso seria criar um servidor? const app = express();
 // instanciar o express, para pegar as ferramentas dele de forma simplificada, criar um objeto a partir do express
 const app = express();
 
