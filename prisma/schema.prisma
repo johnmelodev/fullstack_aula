@@ -1,27 +1,36 @@
+// 1. CONFIGURAÇÃO DO GERADOR DE CÓDIGO
+// Define que o Prisma vai gerar um cliente JavaScript/TypeScript
+// Isso cria automaticamente métodos como findMany(), create(), etc
 generator client {
-  provider = "prisma-client-js"
+  provider = "prisma-client-js" // Gera o cliente Prisma para JS/TS
 }
 
+// 2. CONEXÃO COM O BANCO DE DADOS
+// Configura qual banco de dados será usado e como conectar
 datasource db {
-  provider = "mysql"
-  url      = env("DATABASE_URL")
+  provider = "mysql" // Tipo do banco (poderia ser PostgreSQL, SQLite, etc)
+  url      = env("DATABASE_URL") // A URL vem do arquivo .env (boas práticas de segurança)
 }
 
+// 3. MODELO DE FUNCIONÁRIO (TABELA NO BANCO)
+// Cada campo vira uma coluna na tabela 'Funcionario'
 model Funcionario {
-  id_funcionario Int      @id @default(autoincrement())
-  nome           String   @db.VarChar(100)
-  cpf            String   @db.Char(11)
-  cargo          Cargo
-  salario        Decimal  @db.Decimal(10, 2)
-  data_admissao  DateTime @db.Date
-  telefone       String?  @db.VarChar(20)
-  email          String?  @db.VarChar(100)
-  id_setor       Int
+  id_funcionario Int      @id @default(autoincrement()) // Chave primária auto-incrementada
+  nome           String   @db.VarChar(100) // Nome com limite de 100 caracteres
+  cpf            String   @db.Char(11) // CPF exatamente com 11 caracteres
+  cargo          Cargo // Relaciona com o enum Cargo (abaixo)
+  salario        Decimal  @db.Decimal(10, 2) // Número com 10 dígitos (2 decimais)
+  data_admissao  DateTime @db.Date // Só a data, sem horário
+  telefone       String?  @db.VarChar(20) // O "?" indica campo opcional
+  email          String?  @db.VarChar(100) // Também opcional
+  id_setor       Int // Chave estrangeira (deveria ter relação definida)
 }
 
+// 4. ENUMERAÇÃO DE CARGOS (LISTA DE VALORES FIXOS)
+// No banco vira uma tabela especial ou tipo enumerado
 enum Cargo {
-  Vendedor
-  Caixa
+  Vendedor // Vira valor 'Vendedor' no banco
+  Caixa // Padrão de nomenclatura é PascalCase
   Gerente
   Estoquista
   Outros
